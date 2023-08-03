@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Registration Form</title>
+    <!-- Add the Firebase JavaScript SDK for version 9 -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js"></script>
+</head>
+<body>
+    <h1>Patient Registration Form</h1>
+    <form id="patientForm">
+        <!-- Form fields ... -->
+        <label for="telephone">Telephone:</label>
+        <input type="text" id="telephone" name="telephone" required pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number" maxlength="10">
+        <br>
+
+        <!-- Other form fields ... -->
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Your Firebase SDK configuration for version 9
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID",
+            measurementId: "YOUR_MEASUREMENT_ID" // optional, remove if not needed
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        // Get a reference to the Firebase Realtime Database
+        const database = getDatabase(app);
+
+        const form = document.getElementById('patientForm');
+
+        // Event listener for form submission
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = {
+                telephone: document.getElementById('telephone').value,
+                name: document.getElementById('name').value,
+                // Add other form fields here...
+            };
+
+            // Save data to Firebase Database
+            const patientsRef = ref(database, 'patients');
+            push(patientsRef, formData)
+                .then(() => {
+                    // Data saved successfully
+                    alert('Patient registration successful.');
+                    form.reset();
+                })
+                .catch((error) => {
+                    // Handle errors
+                    console.error('Error saving data:', error);
+                    alert('An error occurred while saving the data. Please try again.');
+                });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Registration Form</title>
+</head>
+<body>
+    <h1>Patient Registration Form</h1>
+    <form id="patientForm">
+        <label for="telephone">Telephone:</label>
+        <input type="text" id="telephone" name="telephone" required>
+        <br>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+        <br>
+
+        <label for="idNumber">ID Number:</label>
+        <input type="text" id="idNumber" name="idNumber" required>
+        <br>
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="3" required></textarea>
+        <br>
+
+        <label for="county">County:</label>
+        <input type="text" id="county" name="county" required>
+        <br>
+
+        <label for="subCounty">Sub County:</label>
+        <input type="text" id="subCounty" name="subCounty" required>
+        <br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <br>
+
+        <label for="maritalStatus">Marital Status:</label>
+        <select id="maritalStatus" name="maritalStatus" required>
+            <option value="">Select</option>
+            <option value="single">Single</option>
+            <option value="married">Married</option>
+            <option value="divorced">Divorced</option>
+            <option value="widowed">Widowed</option>
+        </select>
+        <br>
+
+        <h2>Next of Kin</h2>
+
+        <label for="nextOfKinName">Name:</label>
+        <input type="text" id="nextOfKinName" name="nextOfKinName" required>
+        <br>
+
+        <label for="nextOfKinDOB">Date of Birth:</label>
+        <input type="date" id="nextOfKinDOB" name="nextOfKinDOB" required>
+        <br>
+
+        <label for="nextOfKinID">ID Number:</label>
+        <input type="text" id="nextOfKinID" name="nextOfKinID" required>
+        <br>
+
+        <label for="nextOfKinGender">Gender:</label>
+        <select id="nextOfKinGender" name="nextOfKinGender" required>
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <br>
+
+        <label for="relationship">Relationship:</label>
+        <input type="text" id="relationship" name="relationship" required>
+        <br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Get a reference to the form element
+        const form = document.getElementById('patientForm');
+
+        // Event listener for form submission
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = {
+                telephone: document.getElementById('telephone').value,
+                name: document.getElementById('name').value,
+                dob: document.getElementById('dob').value,
+                idNumber: document.getElementById('idNumber').value,
+                address: document.getElementById('address').value,
+                county: document.getElementById('county').value,
+                subCounty: document.getElementById('subCounty').value,
+                email: document.getElementById('email').value,
+                gender: document.getElementById('gender').value,
+                maritalStatus: document.getElementById('maritalStatus').value,
+                nextOfKin: {
+                    name: document.getElementById('nextOfKinName').value,
+                    dob: document.getElementById('nextOfKinDOB').value,
+                    idNumber: document.getElementById('nextOfKinID').value,
+                    gender: document.getElementById('nextOfKinGender').value,
+                    relationship: document.getElementById('relationship').value,
+                }
+            };
+
+            // In a real application, you can now save the form data to a database (e.g., Firebase)
+
+            // For demonstration purposes, let's log the form data to the console
+            console.log(formData);
+
+            // Optionally, you can display a success message to the user
+            alert('Patient registration successful.');
+        });
+    </script>
+</body>
+</html>
